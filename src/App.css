@@ -1,0 +1,1096 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=League+Spartan:wght@500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+button,
+input,
+textarea {
+    font-family: inherit;
+}
+
+.app {
+    min-height: 100vh;
+    background: #E7D9C8;
+    color: #2f2f2f;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.site-header {
+    position: fixed;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    background: #5C1823;
+    padding: 15px 30px;
+    border-radius: 50px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .18);
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: .3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #F5C68D;
+}
+
+.theme-toggle {
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 3px;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.loading-screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background: #E7D9C8;
+    color: #5C1823;
+}
+
+.loader {
+    width: 45px;
+    height: 45px;
+    border: 5px solid rgba(92, 24, 35, .2);
+    border-top-color: #5C1823;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 120px 8%;
+}
+
+.background-text {
+    position: absolute;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'League Spartan';
+    font-size: 170px;
+    color: rgba(92, 24, 35, .08);
+    letter-spacing: 10px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hero-container {
+    width: 100%;
+    max-width: 1250px;
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.hero-left {
+    z-index: 2;
+}
+
+.hero-text2 {
+    color: #7C3944;
+    letter-spacing: 6px;
+    margin-bottom: 20px;
+}
+
+.name {
+    font-family: 'League Spartan';
+    font-size: 82px;
+    color: #5C1823;
+    line-height: .95;
+}
+
+.hero-line {
+    width: 150px;
+    height: 4px;
+    background: #5C1823;
+    border-radius: 20px;
+    margin: 28px 0;
+}
+
+.course {
+    font-size: 28px;
+    color: #444;
+}
+
+.typing {
+    margin-top: 18px;
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid #5C1823;
+    animation:
+        typing 4s steps(34, end) forwards,
+        blink .8s infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0ch;
+    }
+
+    to {
+        width: 22ch;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.buttons {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.btn-first,
+.btn-second {
+    display: inline-block;
+    padding: 15px 35px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.btn-first {
+    background: #5C1823;
+    color: white;
+}
+
+.btn-first:hover {
+    background: #7E2734;
+    transform: translateY(-3px);
+}
+
+.btn-second {
+    border: 2px solid #5C1823;
+    color: #5C1823;
+}
+
+.btn-second:hover {
+    background: #5C1823;
+    color: white;
+}
+
+/* =========================
+   HERO IMAGE
+========================= */
+
+.hero-right {
+    display: flex;
+    justify-content: center;
+}
+
+.photo-card {
+    width: 360px;
+    height: 460px;
+    background: #F6EFE6;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, .15);
+}
+
+.photo-card::before {
+    content: "";
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background: #D89055;
+    border-radius: 50%;
+    top: -25px;
+    left: -25px;
+}
+
+.photo-card::after {
+    content: "";
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    border: 3px solid #5C1823;
+    bottom: -30px;
+    right: -30px;
+}
+
+.photo-card img {
+    width: 320px;
+    max-width: 90%;
+    border-radius: 20px;
+}
+
+/* =========================
+   COMMON
+========================= */
+
+.section-title {
+    font-size: 50px;
+    color: #5C1823;
+    margin: 15px 0 40px;
+    font-family: 'League Spartan';
+}
+
+.section-description {
+    color: #666;
+    margin-bottom: 45px;
+    font-size: 18px;
+}
+
+.portfolio-section {
+    min-height: 100vh;
+    padding: 120px 8%;
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-section {
+    min-height: 100vh;
+    background: #F8F3EC;
+    padding: 120px 8%;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.about-card {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .08);
+}
+
+.about-card h3 {
+    color: #5C1823;
+    margin-bottom: 18px;
+}
+
+.about-card p {
+    line-height: 1.8;
+    color: #555;
+}
+
+.about-card ul {
+    margin-top: 15px;
+    padding-left: 20px;
+}
+
+.about-card li {
+    margin: 10px 0;
+}
+
+.timeline-box {
+    border-left: 4px solid #5C1823;
+    padding-left: 20px;
+    margin-bottom: 30px;
+}
+
+.timeline-box span {
+    color: #8C3948;
+    font-weight: 600;
+}
+
+.timeline-box h4 {
+    margin: 10px 0;
+    color: #5C1823;
+}
+
+/* =========================
+   SKILLS
+========================= */
+
+.skills-section {
+    background: #E7D9C8;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.skill-card {
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .08);
+    transition: .35s;
+}
+
+.skill-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 18px 35px rgba(92, 24, 35, .18);
+}
+
+.skill-card h3 {
+    color: #5C1823;
+    margin-bottom: 20px;
+}
+
+.skill-card ul {
+    list-style: none;
+}
+
+.skill-card li {
+    padding: 10px 0;
+    color: #555;
+}
+
+/* =========================
+   TOOLS
+========================= */
+
+.tools-section {
+    background: #F8F3EC;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.tool-card {
+    background: white;
+    border-radius: 18px;
+    padding: 35px;
+    text-align: center;
+    color: #5C1823;
+    font-weight: 600;
+    transition: .3s;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
+}
+
+.tool-card:hover {
+    background: #5C1823;
+    color: white;
+    transform: translateY(-8px);
+}
+
+/* =========================
+   PROJECTS
+========================= */
+
+.projects-section {
+    min-height: 100vh;
+    background: #E7D9C8;
+    padding: 120px 8%;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.project-card {
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 380px;
+    transition: .35s;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 18px 35px rgba(92, 24, 35, .18);
+}
+
+.project-card h3 {
+    color: #5C1823;
+    margin-bottom: 15px;
+    font-size: 26px;
+}
+
+.project-card p {
+    margin-top: 15px;
+    line-height: 1.7;
+    color: #555;
+}
+
+.project-card strong {
+    color: #5C1823;
+}
+
+.project-image {
+    width: 100%;
+    max-height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.project-info {
+    margin-top: 15px;
+    line-height: 1.7;
+    color: #555;
+}
+
+.project-info strong {
+    color: #5C1823;
+}
+
+.card-details {
+    background: #F8F3EC;
+    border-left: 4px solid #5C1823;
+    padding: 10px 15px;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+
+.project-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.project-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #5C1823;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    text-align: center;
+    transition: .3s;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.project-btn:hover {
+    background: #8C3948;
+    transform: translateY(-3px);
+}
+
+.details-btn {
+    font-family: inherit;
+}
+
+/* =========================
+   CERTIFICATES
+========================= */
+
+.certificate-box {
+    margin-top: 80px;
+}
+
+.certificate-box h3 {
+    color: #5C1823;
+    margin-bottom: 25px;
+    font-size: 30px;
+}
+
+.certificate-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.certificate-card {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
+    transition: .3s;
+}
+
+.certificate-card:hover {
+    transform: translateY(-8px);
+}
+
+/* =========================
+   PROJECT DETAILS
+========================= */
+
+.project-details {
+    min-height: 100vh;
+    background: #F8F3EC;
+    padding: 150px 8% 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-details-card {
+    width: 100%;
+    max-width: 900px;
+    background: white;
+    border-radius: 25px;
+    padding: 50px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, .1);
+}
+
+.details-label {
+    color: #8C3948;
+    letter-spacing: 4px;
+    font-weight: 600;
+}
+
+.project-details-card h1 {
+    font-family: 'League Spartan';
+    color: #5C1823;
+    font-size: 55px;
+    margin: 20px 0;
+}
+
+.details-description {
+    font-size: 19px;
+    line-height: 1.8;
+    color: #555;
+}
+
+.details-section {
+    margin-top: 40px;
+}
+
+.details-section h2 {
+    color: #5C1823;
+    margin-bottom: 20px;
+}
+
+.details-section p {
+    color: #555;
+    line-height: 1.8;
+}
+
+.tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tech-tag {
+    background: #E7D9C8;
+    color: #5C1823;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.details-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-section {
+    min-height: 100vh;
+    background: #F8F3EC;
+    padding: 120px 8%;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.contact-item {
+    background: white;
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .08);
+    transition: .3s;
+}
+
+.contact-item:hover {
+    transform: translateY(-8px);
+}
+
+.contact-item h3 {
+    color: #5C1823;
+    margin-bottom: 15px;
+}
+
+.contact-item a {
+    text-decoration: none;
+    color: #555;
+}
+
+.contact-item a:hover {
+    color: #5C1823;
+}
+
+.contact-form-container {
+    max-width: 800px;
+    margin: 70px auto 0;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .08);
+}
+
+.contact-form-container h3 {
+    color: #5C1823;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: #5C1823;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #5C1823;
+    box-shadow: 0 0 0 2px rgba(92, 24, 35, .1);
+}
+
+.form-error {
+    color: #b00020;
+    font-size: 14px;
+}
+
+.submit-btn {
+    background: #5C1823;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: .3s;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background: #8C3948;
+}
+
+.submit-btn:disabled {
+    background: #999;
+    cursor: not-allowed;
+}
+
+.contact-end {
+    text-align: center;
+    margin-top: 60px;
+    font-size: 22px;
+    color: #5C1823;
+    font-weight: 600;
+}
+
+/* =========================
+   404
+========================= */
+
+.not-found {
+    min-height: 100vh;
+    padding: 150px 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #E7D9C8;
+}
+
+.not-found h1 {
+    font-family: 'League Spartan';
+    font-size: 120px;
+    color: #5C1823;
+}
+
+.not-found h2 {
+    color: #5C1823;
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.not-found p {
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #5C1823;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+footer p {
+    margin: 8px 0;
+}
+
+/* =========================
+   DARK MODE
+========================= */
+
+.app.dark {
+    background:  #303030;
+    color: #f5f5f5;
+}
+
+.app.dark .hero,
+.app.dark .skills-section,
+.app.dark .projects-section,
+.app.dark .not-found {
+    background:  #303030;
+}
+
+.app.dark .about-section,
+.app.dark .tools-section,
+.app.dark .contact-section,
+.app.dark .project-details {
+    background: #221b1d;
+}
+
+.app.dark .about-card,
+.app.dark .skill-card,
+.app.dark .tool-card,
+.app.dark .project-card,
+.app.dark .certificate-card,
+.app.dark .contact-item,
+.app.dark .contact-form-container,
+.app.dark .project-details-card {
+    background: #2d2527;
+    color: #f5f5f5;
+}
+
+.app.dark .about-card p,
+.app.dark .project-card p,
+.app.dark .project-info,
+.app.dark .contact-item a,
+.app.dark .details-description,
+.app.dark .details-section p,
+.app.dark .not-found p,
+.app.dark .section-description,
+.app.dark .course {
+    color: #d5d5d5;
+}
+
+.app.dark .skill-card li {
+    color: #d5d5d5;
+}
+
+.app.dark .form-group input,
+.app.dark .form-group textarea {
+    background: #1d191a;
+    color: white;
+    border-color: #555;
+}
+
+.app.dark .card-details {
+    background: #211a1c;
+}
+
+.app.dark .tech-tag {
+    background: #4a3035;
+    color: #f5c68d;
+}
+
+.app.dark .loading-screen {
+    background:  #303030;
+    color: #f5c68d;
+}
+
+.app.dark .loader {
+    border-color: rgba(255, 255, 255, .2);
+    border-top-color: #f5c68d;
+}
+
+.app.dark .photo-card {
+    background: #2d2527;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1000px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-left {
+        order: 2;
+    }
+
+    .hero-right {
+        order: 1;
+        margin-bottom: 40px;
+    }
+
+    .hero-line {
+        margin: 28px auto;
+    }
+
+    .buttons {
+        justify-content: center;
+    }
+
+    .background-text {
+        font-size: 90px;
+    }
+
+    .name {
+        font-size: 55px;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .certificate-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================
+   TABLET <= 768px
+========================= */
+
+@media (max-width: 768px) {
+    .navbar {
+        gap: 15px;
+        padding: 12px 18px;
+    }
+
+    .nav-link {
+        font-size: 12px;
+    }
+
+    .section-title {
+        font-size: 42px;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-details-card {
+        padding: 30px;
+    }
+
+    .project-details-card h1 {
+        font-size: 42px;
+    }
+
+    .details-actions {
+        flex-direction: column;
+    }
+}
+
+/* =========================
+   MOBILE <= 480px
+========================= */
+
+@media (max-width: 480px) {
+    .site-header {
+        width: 95%;
+    }
+
+    .navbar {
+        justify-content: center;
+        gap: 8px;
+        padding: 10px;
+    }
+
+    .nav-link {
+        font-size: 10px;
+    }
+
+    .theme-toggle {
+        font-size: 16px;
+    }
+
+    .hero {
+        padding: 120px 5% 60px;
+    }
+
+    .background-text {
+        font-size: 55px;
+        top: 110px;
+    }
+
+    .name {
+        font-size: 45px;
+    }
+
+    .course {
+        font-size: 20px;
+    }
+
+    .typing {
+        font-size: 14px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-first,
+    .btn-second {
+        width: 100%;
+        text-align: center;
+    }
+
+    .photo-card {
+        width: 270px;
+        height: 350px;
+    }
+
+    .photo-card img {
+        width: 240px;
+    }
+
+    .section-title {
+        font-size: 38px;
+    }
+
+    .section-description {
+        font-size: 15px;
+    }
+
+    .portfolio-section,
+    .about-section,
+    .projects-section,
+    .contact-section {
+        padding: 110px 5% 70px;
+    }
+
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form-container {
+        padding: 25px;
+    }
+
+    .project-details {
+        padding: 120px 5% 60px;
+    }
+
+    .project-details-card {
+        padding: 25px;
+    }
+
+    .project-details-card h1 {
+        font-size: 36px;
+    }
+
+    .not-found h1 {
+        font-size: 80px;
+    }
+}
