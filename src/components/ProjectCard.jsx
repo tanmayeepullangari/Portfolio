@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ProjectInfo from "./ProjectInfo";
 
 function ProjectCard({
   title,
@@ -16,14 +17,11 @@ function ProjectCard({
 
       <p>{description}</p>
 
-      <p>
-        <strong>Tech Stack:</strong>{" "}
-        {techStack.join(", ")}
-      </p>
+      <ProjectInfo techStack={techStack} />
 
       {showDetails && (
         <p>
-          More details about this project can be added here.
+          More details about this project.
         </p>
       )}
 
