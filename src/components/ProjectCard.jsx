@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import ProjectInfo from "./ProjectInfo";
 
 function ProjectCard({
+  id,
   title,
   description,
   techStack,
@@ -12,7 +14,6 @@ function ProjectCard({
 
   return (
     <article className="project-card">
-
       <h3>{title}</h3>
 
       <p>{description}</p>
@@ -20,27 +21,34 @@ function ProjectCard({
       <ProjectInfo techStack={techStack} />
 
       {showDetails && (
-        <p>
-          More details about this project.
+        <p className="card-details">
+          Click below to view full details page or visit repository.
         </p>
       )}
 
-      <button
-        className="project-btn"
-        onClick={() => setShowDetails(!showDetails)}
-      >
-        {showDetails ? "Hide Details" : "View Details"}
-      </button>
+      <div className="project-actions">
+        {id && (
+          <Link to={`/projects/${id}`} className="project-btn details-btn">
+            Full Details Page
+          </Link>
+        )}
 
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="project-btn"
-      >
-        View Project →
-      </a>
+        <button
+          className="project-btn"
+          onClick={() => setShowDetails(!showDetails)}
+        >
+          {showDetails ? "Hide Quick Info" : "Quick Info"}
+        </button>
 
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="project-btn"
+        >
+          View GitHub →
+        </a>
+      </div>
     </article>
   );
 }

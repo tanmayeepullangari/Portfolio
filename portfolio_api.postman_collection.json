@@ -1,0 +1,170 @@
+{
+  "info": {
+    "_postman_id": "portfolio-react-express-api",
+    "name": "Portfolio React & Express API Collection",
+    "description": "Postman Collection covering all endpoints (B1-B7) and validation edge cases for Assignment 3 Node.js/Express Backend.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "B1 - Health Check (GET /)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/",
+          "host": ["{{baseUrl}}"],
+          "path": [""]
+        },
+        "description": "Health check endpoint confirming API is running."
+      },
+      "response": []
+    },
+    {
+      "name": "B2 - Get All Projects (GET /api/projects)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/projects",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "projects"]
+        },
+        "description": "Returns JSON array of all projects."
+      },
+      "response": []
+    },
+    {
+      "name": "B3 - Get Single Project - Success (GET /api/projects/:id)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/projects/truthlens",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "projects", "truthlens"]
+        },
+        "description": "Returns matching project object for valid project ID."
+      },
+      "response": []
+    },
+    {
+      "name": "B3 - Get Single Project - 404 Failure (GET /api/projects/nonexistent)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/projects/nonexistent",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "projects", "nonexistent"]
+        },
+        "description": "Returns HTTP 404 JSON for non-existent project ID."
+      },
+      "response": []
+    },
+    {
+      "name": "B4 - Submit Contact Form - Success (POST /api/contact)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"jane.doe@example.com\",\n  \"message\": \"Hello, I loved your portfolio!\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/contact",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "contact"]
+        },
+        "description": "Validates and persists a new contact form submission."
+      },
+      "response": []
+    },
+    {
+      "name": "B4 - Submit Contact Form - 400 Failure Missing Fields",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Jane Doe\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/contact",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "contact"]
+        },
+        "description": "Returns HTTP 400 JSON when required fields are missing."
+      },
+      "response": []
+    },
+    {
+      "name": "B4 - Submit Contact Form - 400 Failure Invalid Email",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"invalid-email-format\",\n  \"message\": \"Hello!\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/contact",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "contact"]
+        },
+        "description": "Returns HTTP 400 JSON when email format is invalid."
+      },
+      "response": []
+    },
+    {
+      "name": "B5 - List Contact Submissions (GET /api/contact)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/contact",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "contact"]
+        },
+        "description": "Returns array of all stored contact form submissions."
+      },
+      "response": []
+    },
+    {
+      "name": "B6 - Centralized 404 Handler (GET /api/undefined-route)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/undefined-route",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "undefined-route"]
+        },
+        "description": "Catches undefined routes and returns HTTP 404 JSON error body."
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000",
+      "type": "string"
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
@@ -8,6 +10,9 @@ function ContactForm() {
   });
 
   const [errors, setErrors] = useState({});
+  const [serverError, setServerError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -21,6 +26,8 @@ function ContactForm() {
       ...previous,
       [name]: "",
     }));
+    setServerError("");
+    setSuccessMessage("");
   };
 
   const validateForm = () => {
@@ -33,7 +40,7 @@ function ContactForm() {
     if (!formData.email.trim()) {
       newErrors.email = "Email is required.";
     } else if (
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())
     ) {
       newErrors.email = "Please enter a valid email.";
     }
@@ -45,8 +52,10 @@ function ContactForm() {
     return newErrors;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setServerError("");
+    setSuccessMessage("");
 
     const validationErrors = validateForm();
 
@@ -55,15 +64,45 @@ function ContactForm() {
       return;
     }
 
-    alert("Thank you! Your message has been submitted.");
+    setIsSubmitting(true);
 
-    setFormData({
-      name: "",
-      email: "",
-      message: "",
-    });
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    setErrors({});
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        if (responseData.details) {
+          setErrors(responseData.details);
+        }
+        setServerError(
+          responseData.error || responseData.message || "Failed to submit message to server."
+        );
+        return;
+      }
+
+      // Success (HTTP 201)
+      setSuccessMessage(
+        responseData.message || "Thank you! Your message has been submitted successfully."
+      );
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+      setErrors({});
+    } catch (err) {
+      console.error("Submission error:", err);
+      setServerError("Network error: Could not reach backend server. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const isFormValid =
@@ -73,6 +112,18 @@ function ContactForm() {
 
   return (
     <form className="contact-form" onSubmit={handleSubmit}>
+      {successMessage && (
+        <div className="form-alert success">
+          {successMessage}
+        </div>
+      )}
+
+      {serverError && (
+        <div className="form-alert error">
+          {serverError}
+        </div>
+      )}
+
       <div className="form-group">
         <label htmlFor="name">Name</label>
 
@@ -83,6 +134,7 @@ function ContactForm() {
           value={formData.name}
           onChange={handleChange}
           placeholder="Enter your name"
+          disabled={isSubmitting}
         />
 
         {errors.name && (
@@ -100,6 +152,7 @@ function ContactForm() {
           value={formData.email}
           onChange={handleChange}
           placeholder="Enter your email"
+          disabled={isSubmitting}
         />
 
         {errors.email && (
@@ -117,6 +170,7 @@ function ContactForm() {
           value={formData.message}
           onChange={handleChange}
           placeholder="Write your message"
+          disabled={isSubmitting}
         />
 
         {errors.message && (
@@ -127,9 +181,9 @@ function ContactForm() {
       <button
         type="submit"
         className="submit-btn"
-        disabled={!isFormValid}
+        disabled={!isFormValid || isSubmitting}
       >
-        Send Message
+        {isSubmitting ? "Sending..." : "Send Message"}
       </button>
     </form>
   );
